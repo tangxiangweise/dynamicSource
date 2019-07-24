@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dynamic.source.mapper.StudentMapper">
+
+	<sql id="selectsql">
+		`id`, `name`
+	</sql>
+
+	<sql id="insertsql">
+	     `name`
+	</sql>
+
+	<select id="queryById" resultType="com.dynamic.source.entity.Student">
+		select <include refid="selectsql" /> from `student` where `id`=#{id}
+	</select>
+
+	<insert id="insertOne" parameterType="com.dynamic.source.entity.Student" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into `student`(<include refid="insertsql" />)values (#{name})
+	</insert>
+
+
+</mapper>
